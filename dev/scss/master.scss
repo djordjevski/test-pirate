@@ -70,7 +70,7 @@ body {
 .Btn {
     cursor: pointer;
     font-family: OpenSans, sans-serif;
-    padding: 10px 20px;
+    padding: 7px 20px;
     border-radius: 4px;
     color: #fff;
     text-shadow: 0 1px rgba(#000, 0.9);
@@ -158,12 +158,12 @@ body {
                             line-height: 1.15;
                             .HotelName {
                                 font-weight: 600;
-                                font-size: 2em;
+                                font-size: 1.75em;
                             }
                             .Location {
                                 margin-top: 0.25em;
                                 font-weight: 300;
-                                font-size: 1.25em;
+                                font-size: 1.1em;
                             }
                         }
                         .Rating {
@@ -186,8 +186,8 @@ body {
 
                     .Description {
                         padding: 0 $spacing;
-                        font-size: 0.9em;
-                        line-height: 1.2;
+                        font-size: 0.8em;
+                        line-height: 1.15;
                     }
                     // .Description
 
@@ -205,10 +205,10 @@ body {
                                 flex: 1;
                             }
                             .OfferPrice {
-                                font-size: 2.5em; 
+                                font-size: 2em; 
                             }
                             .OfferDate {
-                                font-size: 0.9em;
+                                font-size: 0.8em;
                                 margin: $spacing*0.5 0 0;
                             }
                         }
@@ -262,8 +262,8 @@ body {
                             margin-bottom: $spacing*0.5;
                         }
                         .ReviewComment {
-                            font-size: 0.9em;
-                            line-height: 1.2;
+                            font-size: 0.8em;
+                            line-height: 1.15;
                         }
                     }
 
