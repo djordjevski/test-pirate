@@ -1,0 +1,327 @@
+@mixin breakpoint($_pointName) {
+    @if $_pointName == XXS {
+        @media only screen and (max-width: 319px) { @content; }
+    }
+    @elseif $_pointName == XS {
+        @media only screen and (min-width: 320px) { @content; }
+    }
+    @elseif $_pointName == S {
+        @media only screen and (min-width: 480px) { @content; }
+    }
+    @elseif $_pointName == min-M {
+        @media only screen and (max-width: 768px) { @content; }
+    }
+    @elseif $_pointName == min-M_p {
+        @media only screen and (max-width: 768px) and (orientation: portrait) { @content; }
+    }
+    @elseif $_pointName == min-M_l {
+        @media only screen and (max-width: 768px) and (orientation: landscape) { @content; }
+    }
+    @elseif $_pointName == M {
+        @media only screen and (min-width: 769px) { @content; }
+    }
+    @elseif $_pointName == M_l {
+        @media only screen and (min-width: 769px) and (orientation: landscape) { @content; }
+    }
+    @elseif $_pointName == min-L {
+        @media only screen and (max-width: 991px) { @content; }
+    }
+    @elseif $_pointName == L {
+        @media only screen and (min-width: 992px) { @content; }
+    }
+    @elseif $_pointName == min-XL {
+        @media only screen and (max-width: 1199px) { @content; }
+    }
+    @elseif $_pointName == XL {
+        @media only screen and (min-width: 1200px) { @content; }
+    }
+    @elseif $_pointName == XXL {
+        @media only screen and (min-width: 1400px) { @content; }
+    }
+    @elseif $_pointName == _l {
+        @media only screen and (orientation: landscape) { @content; }
+    }
+    @elseif $_pointName == _p {
+        @media only screen and (orientation: portrait) { @content; }
+    }
+}
+
+
+// Variables
+$colorSeparator: #ccc;
+$colorBtnBase: #284BCD;
+$colorPlus: #29762B;
+$colorMinus: #C70000;
+$spacing: 15px;
+$imageWidth: 300px;
+$imageWidth-M: 200px;
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: OpenSans, sans-serif;
+    color: #444;
+    background: #fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+.Btn {
+    cursor: pointer;
+    font-family: OpenSans, sans-serif;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-shadow: 0 1px rgba(#000, 0.9);
+    border: 1px solid darken($colorBtnBase, 20%);
+    background: rgba($colorBtnBase, 0.8);
+    box-shadow: inset 0 2px 2px rgba(#fff, 0.35), inset 0 -2px 3px rgba($colorBtnBase, 0.75); 
+    transition: all ease-out 200ms;
+
+    &:hover {
+        background: $colorBtnBase;
+    }
+
+    &.Big {
+        font-size: 18px;
+    }
+}
+
+.MainContent {
+    margin: 0 auto;
+    @include breakpoint(min-L) {
+        width: 95%;        
+    }
+    @include breakpoint(L) {
+        width: 950px;
+    } 
+
+    .LoadBtnHost {
+        padding: $spacing*2 0;
+        text-align: center;
+
+        .Btn {
+            @include breakpoint(_p) {
+                width: 100%;
+            }
+        }
+    }
+
+    .HotelsList {
+        .HotelItem {
+            font-size: 16px;
+            margin-bottom: 1em;
+            border: 1px solid $colorSeparator;
+
+            .ContentHost {
+                @include breakpoint(_l) {
+                    display: flex;
+                }
+                background: linear-gradient(to bottom, #eee, #fff);
+
+                .HotelImage {
+                    @include breakpoint(_p) {
+                        width: 100%;
+                        height: 0;
+                        padding-bottom: 75%;
+                    }
+                    @include breakpoint(min-M_l) {
+                        width: $imageWidth-M;
+                        height: $imageWidth-M*0.75;
+                    }
+                    @include breakpoint(M_l) {
+                        width: $imageWidth;
+                        height: $imageWidth*0.75;
+                    }
+                    flex-shrink: 0;
+                    background: no-repeat center center;
+                    background-size: cover; 
+                
+                    img { display: none; }
+                }
+                // .HotelImage
+
+                .HotelInfoWrapper {
+                    @include breakpoint(_l) {
+                        flex: 1;
+                    }
+                    .ItemHeader {
+                        @include breakpoint(_l) {
+                            display: flex;
+                            align-items: baseline;
+                        }
+                        padding: $spacing;
+                        
+                        .HotelMainInfo {
+                            flex: 1;
+                            line-height: 1.15;
+                            .HotelName {
+                                font-weight: 600;
+                                font-size: 2em;
+                            }
+                            .Location {
+                                margin-top: 0.25em;
+                                font-weight: 300;
+                                font-size: 1.25em;
+                            }
+                        }
+                        .Rating {
+                            font-size: 1.25em;
+                            @include breakpoint(_p) {
+                                margin-top: $spacing;
+                            }
+                            @include breakpoint(_l) {
+                                flex-basis: 110px;
+                                text-align: right;
+                                margin-left: auto;
+                            }
+
+                            .StarsAsText { display: none; }
+                            .Star { color: #fb0; }
+                            .Blank { color: #ccc; }
+                        }
+                    }
+                    // .ItemHeader
+
+                    .Description {
+                        padding: 0 $spacing;
+                        font-size: 0.9em;
+                        line-height: 1.2;
+                    }
+                    // .Description
+
+                    .ItemFooter {
+                        padding: $spacing;
+                        @include breakpoint(_l) {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .PriceAndDate {
+                            @include breakpoint(_l) {
+                                order: 2;
+                                text-align: right;
+                                flex: 1;
+                            }
+                            .OfferPrice {
+                                font-size: 2.5em; 
+                            }
+                            .OfferDate {
+                                font-size: 0.9em;
+                                margin: $spacing*0.5 0 0;
+                            }
+                        }
+
+                        .ButtonHost {
+                            @include breakpoint(_l) {
+                                order: 1;
+                            }
+                            .Btn {
+                                @include breakpoint(_p) {
+                                    margin-top: $spacing;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    // .ItemFooter
+
+                }
+                // .HotelInfoWrapper
+                
+            }
+            // .ContentHost
+
+            .ReviewsHost {
+                padding: 0 $spacing;
+                background: #eee;
+
+                .ReviewItem {
+                    display: flex;
+                    align-items: baseline;
+                    padding: $spacing 0;
+                    border-bottom: 1px solid $colorSeparator;
+
+                    .Mood {
+                        .MoodIcon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 50%;
+                            color: #fff;
+                        }
+                    }
+
+                    .Content {
+                        flex: 1;
+                        padding-left: $spacing; 
+                        .ReviewerName {
+                            margin-bottom: $spacing*0.5;
+                        }
+                        .ReviewComment {
+                            font-size: 0.9em;
+                            line-height: 1.2;
+                        }
+                    }
+
+                    &.plus {
+                        .Mood {
+                            .MoodIcon {
+                                background: $colorPlus;
+                            }
+                        }
+                        .Content {
+                            .ReviewerName {
+                                color: $colorPlus;
+                            }
+                        }
+                    }
+                    // &.plus
+
+                    &.minus {
+                        .Mood {
+                            .MoodIcon {
+                                background: $colorMinus;
+                            }
+                        }
+                        .Content {
+                            .ReviewerName {
+                                color: $colorMinus;
+                            }
+                        }
+                    }
+                    // &.minus
+                }
+                // .ReviewItem
+            }
+            // .ReviewsHost
+        }
+        // .HotelItem
+
+        .ErrorMessageHost {
+            padding: $spacing*3 $spacing;
+            border: 1px solid $colorMinus;
+            background: linear-gradient(to bottom, #eee, #fff);
+            
+            .ErrorMessage {
+                text-align: center;
+                font-size: 32px;
+
+                .ErrorMessageIcon {
+                    margin-bottom: $spacing*2; 
+                    font-size: 2em;
+                    color: $colorMinus;
+                }
+                .ErrorMessageText {
+                    display: block;
+                }
+            }
+        }
+        // .ErrorMessageHost
+    }
+    // .HotelsList
+}
+// .MainContent
